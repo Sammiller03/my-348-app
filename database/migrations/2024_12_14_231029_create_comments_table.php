@@ -17,11 +17,11 @@ return new class extends Migration
             $table->timestamps();
 
             //Ref a User and Post
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned(); //the user that posted the comment
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->bigInteger('post_id')->unsigned();
+            $table->bigInteger('post_id')->unsigned(); //the post id that the comment belongs to
             $table->foreign('post_id')->references('id')->on('posts')
                 ->onDelete('cascade')->onUpdate('cascade');
         });

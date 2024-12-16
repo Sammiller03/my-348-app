@@ -15,10 +15,11 @@ class PostSeeder extends Seeder
     {
         $p = new Post;
         $p->title = 'This is my first post';
-        $p->content = 'Hello there my name is Sam and this is my first post this is a test how is your day going?';
+        $p->content = 'Hello there this is my first post this is a test how is your day going?';
         $p->user_id = 1; //user id 1
 
         $p->save();
 
+        Post::factory(15)->create();
     }
 }
