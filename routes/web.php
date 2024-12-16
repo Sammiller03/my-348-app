@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,4 +19,27 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Project routes
+Route::get('/posts', [PostController::class, 'index'])->middleware(['auth'])->name('posts.index');
+
+//create
+
+//store
+
+//show
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+
+//edit
+
+//update
+
+//destory
+
+
+
+
+
+
 require __DIR__.'/auth.php';
+
+
