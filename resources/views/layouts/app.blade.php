@@ -3,6 +3,7 @@
 
     <head>
 
+        @livewireStyles
         <!-- my addition -->
         <title>@yield('title')</title>
 
@@ -23,6 +24,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
 
+            @livewireScripts
             <h1>@yield('title')</h1> <!-- my addition -->
 
             @include('layouts.navigation')

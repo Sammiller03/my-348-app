@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             //Ref a User and Post

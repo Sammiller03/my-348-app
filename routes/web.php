@@ -19,19 +19,29 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
 //Project routes
+//index
 Route::get('/posts', [PostController::class, 'index'])->middleware(['auth'])->name('posts.index');
+
 
 //create
 
+
 //store
+
 
 //show
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
 
 //edit
 
+
 //update
+
 
 //destory
 
