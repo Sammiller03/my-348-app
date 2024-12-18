@@ -27,9 +27,11 @@ Route::get('/posts', [PostController::class, 'index'])->middleware(['auth'])->na
 
 
 //create
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 
 
 //store
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 
 //show

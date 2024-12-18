@@ -4,8 +4,7 @@
     <head>
 
         @livewireStyles
-        <!-- my addition -->
-        <title>@yield('title')</title>
+        <title>@yield('title')</title> <!-- my addition -->
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +25,25 @@
 
             @livewireScripts
             <h1>@yield('title')</h1> <!-- my addition -->
+
+
+            <!-- For errors and messages -->
+            @if ($errors->any())
+                <div>
+                    Errors:
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('message'))
+                <p><b>{{ session('message') }}</b></p>
+            @endif
+             <!-- For errors and messages -->
+
 
             @include('layouts.navigation')
 

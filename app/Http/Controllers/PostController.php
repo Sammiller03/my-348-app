@@ -13,11 +13,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::paginate(5);
-
-
         return view('posts.index', compact('posts'));
-
-
     }
 
     /**
@@ -25,7 +21,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -33,7 +29,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required', 'string', 'max:255', 'unique:posts,title',],
+            'content' => ['required', 'string', 'max:2000',],
+        ]);
+
+        $p = new Post;
+        $p->title = $validatedData['title'];
+        $p->content = $validatedData['content'];
+        $p->user_id = auth()->id(); //currently authorised user logged in
+        $p->save();
+
+        session()->flash('message', 'You created a Post!');
+        return redirect()->route('posts.index');
     }
 
     /**
