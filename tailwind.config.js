@@ -11,6 +11,11 @@ export default {
 
     theme: {
         extend: {
+            
+            padding: {
+                '4': '1rem',
+            },
+
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },

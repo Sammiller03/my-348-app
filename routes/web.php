@@ -36,7 +36,7 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 //show
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+//Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 
 //edit
@@ -46,6 +46,7 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 
 
 //destory
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 
 
