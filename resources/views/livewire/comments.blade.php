@@ -18,7 +18,7 @@
         placeholder="Write a comment" 
         class="w-full p-2 border rounded focus:ring focus:ring-indigo-300"
     />
-    <button 
+    <button
         type="submit" 
         class="text-sm px-3 py-2 mt-2 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-black"
         >Submit
