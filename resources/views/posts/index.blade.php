@@ -31,6 +31,14 @@
                         </form>
                     </div>
 
+                    <!-- Edit button -->
+                    <div class="flex flex-col items-center justify-center">
+                        <a href="{{ route('posts.edit', $post) }}" 
+                        class="text-sm bg-gray-500 hover:bg-blue-500 text-white p-1 rounded">
+                            Edit post
+                        </a>
+                    </div>
+
                     <a href="{{ route('users.show', ['user' => $post->user->id]) }}" class="text-indigo-600 font-semibold text-lg hover:underline">
                         {{ $post->user->name }}
                     </a>

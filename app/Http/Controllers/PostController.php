@@ -42,7 +42,7 @@ class PostController extends Controller
         $p->user_id = auth()->id(); //currently authorised user logged in
         $p->save();
 
-        session()->flash('message', 'You created a Post!');
+        session()->flash('message', 'You created a Post!'); //or add with() to route
         return redirect()->route('posts.index');
     }
 
@@ -57,17 +57,25 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required', 'string', 'max:255', 'unique:posts,title',],
+            'content' => ['required', 'string', 'max:2000',],
+        ]);
+
+        $post->update($validatedData);
+
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
+
     }
 
     /**

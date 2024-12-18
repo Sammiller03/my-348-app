@@ -40,9 +40,11 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 
 
 //edit
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit'); //this gets sent to posts.update like create to store
 
 
 //update
+Route::put('/post/{post}', [PostController::class, 'update'])->name('posts.update');
 
 
 //destory
