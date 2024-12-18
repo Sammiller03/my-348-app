@@ -14,41 +14,46 @@
 
         <ul class="w-full max-w-2xl space-y-6">
             @foreach ($posts as $post)
-                <!-- post content -->
-                <li class="bg-white border border-gray-200 rounded-lg p-6 shadow-lg">
 
-                    <!-- Delete Button -->
-                     <div class="flex flex-col items-center justify-center">
-                        <form  method="POST" 
-                            action="{{ route('posts.destroy', ['id' => $post->id]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                type="submit" 
-                                class="text-sm bg-gray-500 hover:bg-red-500 text-white p-1 rounded">
-                                Delete post
-                            </button>
-                        </form>
+                <li class="bg-white border border-gray-200 rounded-lg p-6 shadow-lg relative">
+                    <!-- Flex Container for Buttons and Content -->
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <!-- User and Post Content (this is passing the id to users.show when could just be $post-->
+                            <a href="{{ route('users.show', ['user' => $post->user->id]) }}"
+                                class="text-indigo-600 font-semibold text-lg hover:underline">
+                                    {{ $post->user->name }}
+                            </a>
+                            <p class="mt-2"><strong>Title:</strong> {{ $post->title }}</p>
+                             <p class="mt-1"><strong>Content:</strong> {{ $post->content }}</p>
+                        </div>
+
+                        <!-- Buttons Section -->
+                        <div class="flex space-x-2">
+                            <!-- Delete Button -->
+                            <form method="POST" action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" 
+                                        class="text-sm bg-gray-500 hover:bg-red-500 text-white p-1 rounded px-2 whitespace-nowrap">
+                                    Delete post
+                                </button>
+                            </form>
+
+                            <!-- Edit Button -->
+                            <a href="{{ route('posts.edit', $post) }}" 
+                                class="text-sm bg-gray-500 hover:bg-blue-500 text-white p-1 rounded px-2 whitespace-nowrap">
+                                Edit post
+                            </a>
+                        </div>
                     </div>
 
-                    <!-- Edit button -->
-                    <div class="flex flex-col items-center justify-center">
-                        <a href="{{ route('posts.edit', $post) }}" 
-                        class="text-sm bg-gray-500 hover:bg-blue-500 text-white p-1 rounded">
-                            Edit post
-                        </a>
-                    </div>
 
-                    <a href="{{ route('users.show', ['user' => $post->user->id]) }}" class="text-indigo-600 font-semibold text-lg hover:underline">
-                        {{ $post->user->name }}
-                    </a>
 
-                    <p class="mt-2"><strong>Title:</strong> {{ $post->title }}</p>
-                    <p class="mt-1"><strong>Content:</strong> {{ $post->content }}</p>
-
-                    <!-- this dynamically updates the comments section under a post using livewire Comments and comments.blade.php -->
+                    <!-- Comments Section -->
                     <livewire:comments :post="$post" />
                 </li>
+
             @endforeach
         </ul>
 

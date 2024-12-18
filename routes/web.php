@@ -36,7 +36,6 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 //show
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-//Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 
 //edit
