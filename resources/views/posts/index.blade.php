@@ -3,9 +3,14 @@
 @section('title', 'Posts')
 
 @section('content')
+
+    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-lg">
+        <a href="{{ route('posts.create' )}}">Create a Post</a>
+    </div>
+
     <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8">
 
-        <h1 class="text-2xl font-bold mb-8 text-center pt-4">This is the list of posts:</h1>
+        <h1 class="text-2xl font-bold mb-8 text-center pt-4">Posts:</h1>
 
         <ul class="w-full max-w-2xl space-y-6">
             @foreach ($posts as $post)
