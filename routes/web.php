@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,14 +41,18 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 
 //edit
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit'); //this gets sent to posts.update like create to store
+Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
 
 
 //update
 Route::put('/post/{post}', [PostController::class, 'update'])->name('posts.update');
+Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comments.update');
 
 
 //destory
-Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
 
 
 

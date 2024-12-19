@@ -59,7 +59,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', ['post' => $post]);
+        //edit comes before update
+        //handle the authorization in here
+        $response = Gate::inspect('update', $post);
+
+        if ($response->allowed()) {
+            return view('posts.edit', ['post' => $post]);
+        } else {
+            return redirect()->route('posts.index')->with('message', $response->message());
+        }
     }
 
     /**
@@ -68,23 +76,21 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validatedData = $request->validate([
-            'title' => ['required', 'string', 'max:255', 'unique:posts,title',],
+            'title' => ['required', 'string', 'max:255',],
             'content' => ['required', 'string', 'max:2000',],
         ]);
 
         $post->update($validatedData);
 
-        return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
+        return redirect()->route('posts.index')->with('message', 'Post updated successfully!');
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        $post = Post::findOrFail($id);
-
         $response = Gate::inspect('delete', $post);
 
         if ($response->allowed()) {

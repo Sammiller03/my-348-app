@@ -19,7 +19,7 @@
                     <!-- Flex Container for Buttons and Content -->
                     <div class="flex justify-between items-start">
                         <div>
-                            <!-- User and Post Content (this is passing the id to users.show when could just be $post-->
+                            <!-- User and Post Content (this is passing the id to users.show when could just be $user-->
                             <a href="{{ route('users.show', ['user' => $post->user->id]) }}"
                                 class="text-indigo-600 font-semibold text-lg hover:underline">
                                     {{ $post->user->name }}
@@ -31,7 +31,7 @@
                         <!-- Buttons Section -->
                         <div class="flex space-x-2">
                             <!-- Delete Button -->
-                            <form method="POST" action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+                            <form method="POST" action="{{ route('posts.destroy', $post) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" 
