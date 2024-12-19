@@ -30,6 +30,12 @@
 
                         <!-- Buttons Section -->
                         <div class="flex space-x-2">
+                            <!-- Edit Button -->
+                            <a href="{{ route('posts.edit', $post) }}" 
+                                class="text-sm bg-gray-500 hover:bg-blue-500 text-white p-1 rounded px-2 whitespace-nowrap">
+                                Edit post
+                            </a>
+                            
                             <!-- Delete Button -->
                             <form method="POST" action="{{ route('posts.destroy', $post) }}">
                                 @csrf
@@ -39,12 +45,6 @@
                                     Delete post
                                 </button>
                             </form>
-
-                            <!-- Edit Button -->
-                            <a href="{{ route('posts.edit', $post) }}" 
-                                class="text-sm bg-gray-500 hover:bg-blue-500 text-white p-1 rounded px-2 whitespace-nowrap">
-                                Edit post
-                            </a>
                         </div>
                     </div>
                     
