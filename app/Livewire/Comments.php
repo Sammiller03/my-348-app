@@ -8,7 +8,7 @@ use App\Models\Comment;
 
 class Comments extends Component
 {
-    public $newComment = '';
+    public $newComment;
     public $post;
 
     public function mount($post)
@@ -19,7 +19,7 @@ class Comments extends Component
     public function addComment() 
     {
         $this->validate([
-            'newComment' => 'required|max:255'
+            'newComment' => 'required|max:255',
         ]);
 
         $comment = Comment::create([
@@ -28,7 +28,7 @@ class Comments extends Component
             'post_id' => $this->post->id,
         ]);
 
-        $this->newComment = '';
+        $this->reset(['newComment']);  // Reset only the newComment field
     }
 
     public function render()

@@ -27,7 +27,7 @@
             >
         </p>
 
-        <input type="submit" value="Update Post" class="bg-blue-500 text-black py-2 px-4 rounded hover:bg-blue-600 cursor-pointer">
+        <input type="submit" value="Update Post" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer">
 
         <a href="{{ route('posts.index') }}">Cancel</a>
     </form>
