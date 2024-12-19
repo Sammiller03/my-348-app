@@ -4,12 +4,11 @@
 
 @section('content')
 
-    <form method="POST" action="{{ route('posts.update', $post) }}">
+    <form method="POST" action="{{ route('posts.update', $post) }}" class="ml-2 mt-2">
 
         @csrf
         @method("PUT")
 
-        <!-- add old later in value next to $post->title etc. -->
         <p>Title: 
             <input 
                 type="text" 
@@ -19,12 +18,12 @@
             >
         </p>
 
-        <p>Content: 
+        <p class="mt-2">Content: 
             <input 
                 type="text"
                 name="content"
                 value="{{ $post->content }}"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 mb-3"
             >
         </p>
 
