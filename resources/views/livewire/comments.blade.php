@@ -1,6 +1,6 @@
 <div class="space-y-4">
     <!-- show all comments on a post -->
-     <div class="pt-4"> <!-- adds some padding between post and comments section -->
+     <div class="mt-10"> <!-- adds some padding between post and comments section -->
         @foreach ($comments as $comment)
             <div class="p-3 bg-gray-100 rounded-lg shadow flex justify-between items-start">
 

@@ -21,7 +21,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
 //Project routes
 //index
 Route::get('/posts', [PostController::class, 'index'])->middleware(['auth'])->name('posts.index');

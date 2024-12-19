@@ -25,10 +25,10 @@
                         <div>
                             <!-- User and Post Content (this is passing the id to users.show when could just be $user-->
                             <a href="{{ route('users.show', ['user' => $post->user->id]) }}"
-                                class="text-indigo-600 font-semibold text-lg hover:underline">
+                                class="text-indigo-600 font-semibold text-xl hover:underline">
                                     {{ $post->user->name }}
                             </a>
-                            <p class="mt-2"><strong>Title:</strong> {{ $post->title }}</p>
+                            <p class="mt-3"><strong>Title:</strong> {{ $post->title }}</p>
                              <p class="mt-1"><strong>Content:</strong> {{ $post->content }}</p>
                         </div>
 
@@ -56,6 +56,14 @@
                     @if ($post->image_path) 
                         <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post Image" style="max-width: 100%; height: auto;" class="mt-2 mb-3">
                     @endif
+
+                    <!-- tags here -->
+                    <p class="font-semibold mt-3">Tags:</p>
+                    <div class="flex items-start mt-1 space-x-2">
+                        @foreach ($post->tags as $tag)
+                            <p class="bg-gray-100 rounded p-1.5">{{ $tag->tagWord }}</p>
+                        @endforeach
+                    </div>
 
                     <!-- Comments Section -->
                     <livewire:comments :post="$post" />
