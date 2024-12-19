@@ -47,8 +47,11 @@
                             </a>
                         </div>
                     </div>
-
-
+                    
+                    <!-- image here -->
+                    @if ($post->image_path) 
+                        <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post Image" style="max-width: 100%; height: auto;" class="mt-2 mb-3">
+                    @endif
 
                     <!-- Comments Section -->
                     <livewire:comments :post="$post" />

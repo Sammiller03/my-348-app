@@ -40,7 +40,7 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 
 
 //edit
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit'); //this gets sent to posts.update like create to store
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
 
 
@@ -52,8 +52,6 @@ Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('co
 //destory
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
-
-
 
 
 

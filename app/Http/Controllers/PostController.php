@@ -34,16 +34,22 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => ['required', 'string', 'max:255', 'unique:posts,title',],
             'content' => ['required', 'string', 'max:2000',],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public');
+        }
 
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
+        $p->image_path = $imagePath; //could be null
         $p->user_id = auth()->id(); //currently authorised user logged in
         $p->save();
 
-        session()->flash('message', 'You created a Post!'); //or add with() to route
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('message', 'You created a Post!');
     }
 
     /**

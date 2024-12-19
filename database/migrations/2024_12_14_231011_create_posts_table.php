@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
+            $table->string('image_path')->nullable(); // For storing image path
             $table->timestamps();
 
             //Reference a User
