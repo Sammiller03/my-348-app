@@ -61,6 +61,15 @@
                     <p class="font-semibold mt-3">Tags:</p>
                     <div class="flex items-start mt-1 space-x-2">
                         @foreach ($post->tags as $tag)
+
+                        <!-- prevents a weird null print -->
+                            @if ($tag === null)
+                                @break
+                            @endif
+                            @if (empty($tag))
+                                @break
+                            @endif
+
                             <p class="bg-gray-100 rounded p-1.5">{{ $tag->tagWord }}</p>
                         @endforeach
                     </div>

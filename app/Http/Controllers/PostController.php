@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Gate;
 
 
@@ -35,20 +36,38 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:255', 'unique:posts,title',],
             'content' => ['required', 'string', 'max:2000',],
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tags.*' => ['nullable', 'string', 'max:10', 'distinct'],
         ]);
 
+        //Handle Image
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('uploads', 'public');
         }
 
+        //Create the Post
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
-        $p->image_path = $imagePath; //could be null
-        $p->user_id = auth()->id(); //currently authorised user logged in
+        $p->image_path = $imagePath;
+        $p->user_id = auth()->id();
         $p->save();
+        
 
+        //Add tags if any
+        //Maps each tag word id to $tagIds creates a new tag if no already exists
+        if (!empty($validatedData['tags'])) {
+            $tagIds = collect($validatedData['tags'])
+                ->filter(function ($tagWord) {
+                    return !is_null($tagWord); // filter out null tags
+                })
+                ->map(function ($tagWord) {
+                    return Tag::firstOrCreate(['tagWord' => $tagWord])->id;
+                });
+        
+            $p->tags()->attach($tagIds);
+        }
+        
         return redirect()->route('posts.index')->with('message', 'You created a Post!');
     }
 
