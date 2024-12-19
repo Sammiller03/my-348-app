@@ -4,13 +4,17 @@
 
 @section('content')
 
-    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-lg">
-        <a href="{{ route('posts.create' )}}">Create a Post</a>
-    </div>
-
     <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-8">
 
-        <h1 class="text-2xl font-bold mb-8 text-center pt-4">Posts:</h1>
+        <!-- create a post button -->
+        <div class="flex justify-between items-start w-full px-4">
+            <a href="{{ route('posts.create') }}" 
+                class="font-semibold bg-indigo-600 hover:bg-indigo-800 text-white p-4 rounded">
+                    Create a Post
+            </a>
+        </div>
+
+        <h1 class="text-2xl font-bold mb-6 text-center pt-2">Posts:</h1>
 
         <ul class="w-full max-w-2xl space-y-6">
             @foreach ($posts as $post)
