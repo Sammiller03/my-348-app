@@ -19,9 +19,8 @@ class PostTagSeeder extends Seeder
 
         //attach between 1 and 3 tags to each post
         foreach ($posts as $post) {
-            $randomCount = rand(1, 3);
-            $uniqueTagIds = $tags->pluck('id')->unique()->take($randomCount)->toArray();
-
+            $uniqueTagIds = $tags->pluck('id')->shuffle()->take(3)->toArray();
+            
             $post->tags()->attach($uniqueTagIds);
         }
     }
